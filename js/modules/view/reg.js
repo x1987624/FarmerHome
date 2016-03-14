@@ -37,32 +37,12 @@ define(function(require, exports, module) {
 				});
 			});
 		});
-		//获取验证码
-		var count = 0;
-		document.getElementById('get_code').addEventListener('tap', function(event) {
-			GetRegverifyCode();
-		});
-
-		//倒计时
-		var WaitBoxStatus = function(leftSecond) {
-			document.getElementById("get_code").innerText = "重新获取(" + leftSecond + "s)";
-			leftSecond -= 1;
-			if (leftSecond > 0) {
-				document.getElementById("get_code").disabled = true;
-				document.getElementById('get_code').removeEventListener("tap", null, true);
-				setTimeout("WaitBoxStatus(" + leftSecond + ")", 1000);
-			} else {
-				document.getElementById('get_code').addEventListener('tap', function(event) {
-					GetRegverifyCode();
-				});
-				document.getElementById("get_code").disabled = false;
-				document.getElementById("get_code").innerText = "重新获取";
-			}
-		}
-
+		var leftSecond=0;
 		//获取验证码方法
 		var GetRegverifyCode = function() {
-			mui.ajax('http://***/index.ashx?action=get_reg_message', {
+			leftSecond=60;
+			WaitBoxStatus();
+			/*mui.ajax('http://xxx/index.ashx?action=get_reg_message', {
 				data: {
 					"mobile": telephoneBox.value,
 					"ip": plus.device.uuid
@@ -71,7 +51,6 @@ define(function(require, exports, module) {
 				type: 'post', //HTTP请求类型
 				success: function(data) {
 					if (data.status == 1) {
-						count = data.time * 60;
 						//GetNumber();
 						WaitBoxStatus(60);
 					}
@@ -81,25 +60,26 @@ define(function(require, exports, module) {
 					//异常处理；
 					mui.toast("出错提示:" + type + "," + errorThrown);
 				}
-			});
+			});*/
 		}
 
-		/*function GetNumber() {
-			$("#get_code").hide();
-			$("#mark").text(count + "秒后获取");
-			$("#mark").show();
-
-			count--;
-			if (count > 0) {
-				setTimeout(GetNumber, 1000);
+		//倒计时
+		function WaitBoxStatus() {
+			document.getElementById("get_code").innerText = "重新获取(" + leftSecond + "s)";
+			leftSecond -= 1;
+			if (leftSecond > 0) {
+				document.getElementById("get_code").disabled = true;
+				document.getElementById('get_code').removeEventListener("tap", GetRegverifyCode, false);
+				setTimeout(WaitBoxStatus, 1000);
 			} else {
-				count = 0;
-				$("#get_code").val("获取验证码");
-				$("#get_code").show();
-				$("#mark").hide();
-				//$("#get_code").attr("disabled", "");
+				leftSecond=0;
+				document.getElementById('get_code').addEventListener('tap', GetRegverifyCode, false);
+				document.getElementById("get_code").disabled = false;
+				document.getElementById("get_code").innerText = "重新获取";
 			}
-		}*/
+		}
+		//获取验证码
+		document.getElementById('get_code').addEventListener('tap', GetRegverifyCode, false);
 
 	});
 });

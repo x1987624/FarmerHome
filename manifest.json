@@ -10,7 +10,7 @@
     "icons": {
         "72": "icon.png"
     },
-    "launch_path": "view/login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path": "view/guide.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -224,7 +224,94 @@
 					"img/ad/cbd.jpg",
 					"img/ad/muwu.jpg"
 				],
+				"refer": [
+					"view/reg.html"
+				],
+				"priority": 0
+			},
+			"view/reg.html": {
+				"resources": [
+					"js/modules/view/reg.js",
+					"js/sea.js",
+					"js/modules/view/app.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/modules/core/mui.min.js"
+				],
 				"refer": [],
+				"priority": 0
+			},
+			"view/guide.html": {
+				"resources": [
+					"js/modules/core/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"view/index.html"
+				],
+				"priority": 0
+			},
+			"view/index.html": {
+				"resources": [
+					"view/index-main.html",
+					"fonts/mui.ttf",
+					"js/modules/core/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"view/index-menu.html",
+					"view/contact.html",
+					"view/setting.html"
+				],
+				"priority": 0
+			},
+			"view/index-main.html": {
+				"resources": [
+					"js/modules/core/mui.min.js",
+					"css/mui.min.css",
+					"img/ad/yuantiao.jpg",
+					"img/ad/shuijiao.jpg",
+					"img/ad/cbd.jpg",
+					"img/ad/muwu.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"view/index-menu.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"img/teach.png",
+					"js/modules/core/mui.min.js",
+					"css/mui.min.css",
+					"img/source.png",
+					"img/vod.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"view/contact.html": {
+				"resources": [
+					"img/60x60.gif",
+					"js/modules/core/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"view/setting.html": {
+				"resources": [
+					"js/modules/core/mui.view.js",
+					"js/modules/core/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/feedback-page.css",
+					"img/60x60.gif",
+					"js/modules/feedback-page.js",
+					"js/modules/feedback.js"
+				],
+				"refer": [
+					"view/guide.html"
+				],
 				"priority": 0
 			}
 		},
